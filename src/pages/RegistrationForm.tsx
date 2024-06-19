@@ -1,17 +1,11 @@
 import React from "react";
 import { useState } from "react";
 import { z } from "zod";
+import { Link } from "react-router-dom";
 import Step1 from "../components/Step1";
 import Step2 from "../components/Step2";
 import Step3 from "../components/Step3";
 import LastStep from "../components/LastStep";
-
-// const registrationSchema = z.object({
-//   fullName: z.string().min(2, "Full Name is required"),
-//   phoneNumber: z.coerce.number(),
-//   email: z.string().email("Invalid email address"),
-//   salary: z.string().min(1, "You must select a salary range"),
-// });
 
 const RegistrationForm: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -67,7 +61,14 @@ const RegistrationForm: React.FC = () => {
     }
   };
 
-  return <>{renderStep()}</>;
+  return (
+    <>
+      <div className="container-wrapper">
+        <Link to="/">Buena</Link>
+        {renderStep()}
+      </div>
+    </>
+  );
 };
 
 export default RegistrationForm;

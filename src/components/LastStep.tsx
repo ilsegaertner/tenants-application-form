@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 interface LastStepProps {
   previousStep: () => void;
@@ -11,9 +12,12 @@ interface LastStepProps {
 }
 
 const LastStep: React.FC<LastStepProps> = ({ previousStep, formData }) => {
+  const navigate = useNavigate();
+
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     alert("Form data submitted successfully");
+    navigate("/");
   };
   return (
     <>
