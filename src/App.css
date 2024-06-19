@@ -27,6 +27,10 @@
   @apply border-2 flex gap-10;
 }
 
-.container-wrapper {
-  @apply border-2 flex justify-center;
+.form-outer {
+  @apply px-10 my-8;
 }
+
+/* .container-wrapper {
+  @apply border-2 flex justify-center;
+} */

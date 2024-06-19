@@ -49,7 +49,7 @@ const Step2: React.FC<Step2Props> = ({
 
   return (
     <>
-      <form className="px-72 my-8">
+      <form className="form-outer">
         <div className="form-wrapper border-2">
           <div className="form-group">
             <label htmlFor="phoneNumber" className="">

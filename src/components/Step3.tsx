@@ -46,7 +46,7 @@ const Step3: React.FC<Step3Props> = ({
 
   return (
     <>
-      <form className="px-72 my-8">
+      <form className="form-outer">
         <div className="form-wrapper border-2">
           <div className="form-group border-2">
             <label htmlFor="salary" className="">

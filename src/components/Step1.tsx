@@ -40,7 +40,7 @@ const Step1: React.FC<Step1Props> = ({ nextStep, formData, setFormData }) => {
 
   return (
     <>
-      <form className="px-72 my-8" onSubmit={(e) => e.preventDefault()}>
+      <form className="form-outer" onSubmit={(e) => e.preventDefault()}>
         <div className="form-wrapper border-2">
           <div className="mb-4 ">
             <label className="block mb-2">Full Name</label>

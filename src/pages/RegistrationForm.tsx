@@ -63,7 +63,7 @@ const RegistrationForm: React.FC = () => {
 
   return (
     <>
-      <div className="container-wrapper">
+      <div className="container-wrapper flex flex-col items-center border-2 mx-60">
         <Link to="/">Buena</Link>
         {renderStep()}
       </div>
