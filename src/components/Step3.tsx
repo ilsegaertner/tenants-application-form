@@ -121,12 +121,11 @@ const Step3: React.FC<Step3Props> = ({
               back{" "}
             </button>
             <button
-              type="button"
+              type="submit"
               onClick={handleNextStep}
               className="button-filled"
             >
-              {" "}
-              next{" "}
+              next
             </button>
           </div>
         </div>

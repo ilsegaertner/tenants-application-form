@@ -76,7 +76,7 @@ const Step2: React.FC<Step2Props> = ({
               back
             </button>
             <button
-              type="button"
+              type="submit"
               className="button-filled"
               onClick={handleNextStep}
             >

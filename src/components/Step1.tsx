@@ -67,7 +67,7 @@ const Step1: React.FC<Step1Props> = ({ nextStep, formData, setFormData }) => {
             {errors.email && <p className="text-red-500">{errors.email}</p>}
           </div>
           <button
-            type="button"
+            type="submit"
             className="button-filled"
             onClick={handleNextStep}
           >
