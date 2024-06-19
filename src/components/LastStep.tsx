@@ -37,14 +37,11 @@ const LastStep: React.FC<LastStepProps> = ({ previousStep, formData }) => {
             <button
               type="button"
               onClick={previousStep}
-              className="text-gray-800 border-gray-800 border-2 rounded-md p-2"
+              className="button-outline"
             >
               back
             </button>
-            <button
-              type="submit"
-              className="bg-gray-800 text-red-200 p-2 rounded-md"
-            >
+            <button type="submit" className="button-filled">
               {" "}
               Submit
             </button>

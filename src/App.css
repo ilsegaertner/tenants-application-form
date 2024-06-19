@@ -14,3 +14,11 @@
   padding: 0.5rem;
   color: black;
 }
+
+.button-outline {
+  @apply text-gray-800 border-gray-800 border-2 rounded-md p-2;
+}
+
+.button-filled {
+  @apply bg-gray-800 text-red-200 p-2 rounded-md;
+}
