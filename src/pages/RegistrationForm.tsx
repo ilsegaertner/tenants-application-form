@@ -25,10 +25,42 @@ const RegistrationForm: React.FC<RegistrationFormProps> = ({
   const [formData, setFormData] = useState(initialValues);
   const [errors, setErrors] = useState<Record<string, string>>({});
 
+  const validateForm = (data: typeof formData) => {
+    try {
+      registrationSchema.parse(data);
+      return {};
+    } catch (error) {
+      if (error instanceof z.ZodError) {
+        return error.errors.reduce((acc, err) => {
+          if (err.path[0] in data) {
+            acc[err.path[0]] = err.message;
+          }
+          return acc;
+        }, {} as Record<string, string>);
+      }
+      return { form: "An unexpected error occurred" };
+    }
+  };
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const newErrors = validateForm(formData);
+    setErrors(newErrors);
+
+    if (Object.keys(newErrors).length === 0) {
+      console.log("Form data is valid:", formData);
+    }
+  };
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
   return (
     <>
       <form
         onSubmit={handleSubmit}
+        className="form p-5 border-4 border-blue-100 rounded-xl m-auto justify-center flex flex-col max-w-lg bg-yellow-200"
       >
         <div className="form-wrapper">
           <div className="form-group">
@@ -41,6 +73,9 @@ const RegistrationForm: React.FC<RegistrationFormProps> = ({
               placeholder="Enter your full name"
               onChange={handleChange}
             />{" "}
+            {errors.fullName && (
+              <p className="text-red-500">{errors.fullName}</p>
+            )}
           </div>
           <div className="form-group">
             <label htmlFor="email" className="">
@@ -54,6 +89,7 @@ const RegistrationForm: React.FC<RegistrationFormProps> = ({
               placeholder="Enter your email"
               onChange={handleChange}
             />{" "}
+            {errors.email && <p className="text-red-500">{errors.email}</p>}
           </div>
           <div className="form-group">
             <label htmlFor="phoneNumber" className="">
@@ -67,6 +103,9 @@ const RegistrationForm: React.FC<RegistrationFormProps> = ({
               placeholder="Enter your phone number"
               onChange={handleChange}
             />{" "}
+            {errors.phoneNumber && (
+              <p className="text-red-500">{errors.phoneNumber}</p>
+            )}
           </div>
 
           <div className="form-group">
@@ -130,10 +169,11 @@ const RegistrationForm: React.FC<RegistrationFormProps> = ({
                 Mehr als 4000
               </label>
             </div>
+            {errors.salary && <p className="text-red-500"> {errors.salary}</p>}
           </div>
           <button
             type="submit"
-            // onClick={nextStep}
+            onClick={onNext}
             className="bg-blue-900 p-3 rounded-md text-white"
           >
             Next
