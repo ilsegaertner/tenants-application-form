@@ -1,5 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import ModalComponent from "./ModalComponent";
+import { AnimatePresence } from "framer-motion";
 
 interface LastStepProps {
   previousStep: () => void;
@@ -12,16 +14,26 @@ interface LastStepProps {
 }
 
 const LastStep: React.FC<LastStepProps> = ({ previousStep, formData }) => {
+  const [showModal, setShowModal] = useState(false);
   const navigate = useNavigate();
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setShowModal(true);
+  };
+
+  const handleConfirm = () => {
     alert("Form data submitted successfully");
     navigate("/");
   };
+
+  const handleCancel = () => {
+    setShowModal(false);
+  };
+
   return (
     <>
-      <form className="px-72 my-8" onSubmit={handleSubmit}>
+      <form className="form-outer" onSubmit={handleSubmit}>
         <div className="form-wrapper border-2">
           <div className="form-group border-2">
             <label>
@@ -52,6 +64,11 @@ const LastStep: React.FC<LastStepProps> = ({ previousStep, formData }) => {
           </div>
         </div>
       </form>
+      <AnimatePresence>
+        {showModal && (
+          <ModalComponent onCancel={handleCancel} onConfirm={handleConfirm} />
+        )}
+      </AnimatePresence>
     </>
   );
 };
