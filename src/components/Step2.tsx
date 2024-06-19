@@ -8,8 +8,11 @@ import "../App.css";
 const step2Schema = z.object({
   phoneNumber: z
     .string()
-    .min(7, "Phone Number is required and should be valid"),
-  // salary: z.string().min(1, "You must select a salary range"),
+    .regex(/^\d+$/, "Phone Number must contain only numbers")
+    .min(
+      7,
+      "Phone Number is required and needs to be at least 7 characters long"
+    ),
 });
 
 interface Step2Props {
@@ -31,7 +34,8 @@ const Step2: React.FC<Step2Props> = ({
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleNextStep = () => {
+  const handleNextStep = (e: React.FormEvent) => {
+    e.preventDefault();
     try {
       step2Schema.parse(formData);
       setErrors({});
