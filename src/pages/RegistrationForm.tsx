@@ -1,6 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import { z } from "zod";
+import Step1 from "../components/Step1";
 
 const registrationSchema = z.object({
   fullName: z.string().min(2, "Full Name is required"),
@@ -24,6 +25,17 @@ const RegistrationForm: React.FC<RegistrationFormProps> = ({
 }) => {
   const [formData, setFormData] = useState(initialValues);
   const [errors, setErrors] = useState<Record<string, string>>({});
+  const [step, setStep] = useState(1);
+
+  const nextStep = () => {
+    setStep((prev) => prev + 1);
+  };
+
+  const previousStep = () => {
+    setStep((prev) => prev - 1);
+  };
+
+  console.log(step);
 
   const validateForm = (data: typeof formData) => {
     try {
@@ -58,6 +70,9 @@ const RegistrationForm: React.FC<RegistrationFormProps> = ({
 
   return (
     <>
+
+    <Step1 formData={formData} nextStep={nextStep} setFormData={setFormData}/>
+
       <form
         onSubmit={handleSubmit}
         className="form p-5 border-4 border-blue-100 rounded-xl m-auto justify-center flex flex-col max-w-lg bg-yellow-200"
@@ -173,7 +188,7 @@ const RegistrationForm: React.FC<RegistrationFormProps> = ({
           </div>
           <button
             type="submit"
-            onClick={onNext}
+            onClick={nextStep}
             className="bg-blue-900 p-3 rounded-md text-white"
           >
             Next
