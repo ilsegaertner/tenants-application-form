@@ -5,9 +5,9 @@ import RegistrationForm from "./pages/RegistrationForm";
 function App() {
   const initialValues = {
     fullName: "",
-    age: "",
+    phoneNumber: "",
     email: "",
-    password: "",
+    salary: ""
   };
   return (
     <div className="App">

@@ -4,18 +4,18 @@ import { z } from "zod";
 
 const registrationSchema = z.object({
   fullName: z.string().min(2, "Full Name is required"),
-  age: z.coerce.number().min(18, "You must be at least 18 years old"),
+  phoneNumber: z.coerce.number(),
   email: z.string().email("Invalid email address"),
-  password: z.string().min(6, "Password must be at least 6 characters long"),
+  salary: z.string().min(1, "You must select a salary range"),
 });
 
 // For passing props to the RegistrationForm component
 interface RegistrationFormProps {
   initialValues: {
     fullName: string;
-    age: string;
+    phoneNumber: string;
     email: string;
-    password: string;
+    salary: string;
   };
 }
 
@@ -43,19 +43,6 @@ const RegistrationForm: React.FC<RegistrationFormProps> = ({
             />{" "}
           </div>
           <div className="form-group">
-            <label htmlFor="age" className="">
-              Age
-            </label>
-            <input
-              type="text"
-              name="age"
-              id="age"
-              value={formData.age}
-              placeholder="Enter your age"
-              onChange={handleChange}
-            />{" "}
-          </div>
-          <div className="form-group">
             <label htmlFor="email" className="">
               Email
             </label>
@@ -69,21 +56,84 @@ const RegistrationForm: React.FC<RegistrationFormProps> = ({
             />{" "}
           </div>
           <div className="form-group">
-            <label htmlFor="password" className="">
-              Password
+            <label htmlFor="phoneNumber" className="">
+              Phone Number
             </label>
             <input
-              type="password"
-              name="password"
-              id="password"
-              value={formData.password}
-              placeholder="Enter your password"
+              type="text"
+              name="phoneNumber"
+              id="phoneNumber"
+              value={formData.phoneNumber}
+              placeholder="Enter your phone number"
               onChange={handleChange}
             />{" "}
           </div>
+
+          <div className="form-group">
+            <label htmlFor="salary" className="">
+              Salary range
+            </label>
+            <div className="salary-wrapper flex flex-col">
+              <label>
+                <input
+                  type="radio"
+                  name="salary"
+                  id="salary1"
+                  value="0-1000"
+                  checked={formData.salary === "0-1000"}
+                  onChange={handleChange}
+                />
+                0-1000
+              </label>
+              <label>
+                <input
+                  type="radio"
+                  name="salary"
+                  id="salary2"
+                  value="1000-2000"
+                  checked={formData.salary === "1000-2000"}
+                  onChange={handleChange}
+                />
+                1000-2000
+              </label>
+              <label>
+                <input
+                  type="radio"
+                  name="salary"
+                  id="salary3"
+                  value="2000-3000"
+                  checked={formData.salary === "2000-3000"}
+                  onChange={handleChange}
+                />
+                2000-3000
+              </label>
+              <label>
+                <input
+                  type="radio"
+                  name="salary"
+                  id="salary4"
+                  value="3000-4000"
+                  checked={formData.salary === "3000-4000"}
+                  onChange={handleChange}
+                />
+                3000-4000
+              </label>
+              <label>
+                <input
+                  type="radio"
+                  name="salary"
+                  id="salary5"
+                  value=">4000"
+                  checked={formData.salary === ">4000"}
+                  onChange={handleChange}
+                />
+                Mehr als 4000
+              </label>
+            </div>
+          </div>
           <button
             type="submit"
-            onClick={nextStep}
+            // onClick={nextStep}
             className="bg-blue-900 p-3 rounded-md text-white"
           >
             Next
