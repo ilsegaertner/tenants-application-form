@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import ModalComponent from "./ModalComponent";
 import { AnimatePresence } from "framer-motion";
+import Toast from "./Toast";
 
 interface LastStepProps {
   previousStep: () => void;
@@ -15,6 +16,8 @@ interface LastStepProps {
 
 const LastStep: React.FC<LastStepProps> = ({ previousStep, formData }) => {
   const [showModal, setShowModal] = useState(false);
+  const [showToast, setShowToast] = useState(false);
+
   const navigate = useNavigate();
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -23,8 +26,13 @@ const LastStep: React.FC<LastStepProps> = ({ previousStep, formData }) => {
   };
 
   const handleConfirm = () => {
-    alert("Form data submitted successfully");
-    navigate("/");
+    // alert("Form data submitted successfully");
+    setShowModal(false);
+    setShowToast(true);
+    setTimeout(() => {
+      setShowToast(false);
+      navigate("/");
+    }, 2000);
   };
 
   const handleCancel = () => {
@@ -67,6 +75,12 @@ const LastStep: React.FC<LastStepProps> = ({ previousStep, formData }) => {
       <AnimatePresence>
         {showModal && (
           <ModalComponent onCancel={handleCancel} onConfirm={handleConfirm} />
+        )}
+        {showToast && (
+          <Toast
+            message="Form data submitted succesfully"
+            onClose={() => setShowToast(false)}
+          />
         )}
       </AnimatePresence>
     </>
