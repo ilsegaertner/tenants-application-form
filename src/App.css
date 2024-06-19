@@ -22,3 +22,7 @@
 .button-filled {
   @apply bg-gray-800 text-red-200 p-2 rounded-md;
 }
+
+.button-wrapper {
+  @apply border-2 flex gap-10;
+}

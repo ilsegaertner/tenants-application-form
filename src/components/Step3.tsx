@@ -110,14 +110,24 @@ const Step3: React.FC<Step3Props> = ({
             </div>
             {errors.salary && <p className="text-red-500"> {errors.salary}</p>}
           </div>
-          <button type="button" onClick={previousStep} className="border-2">
-            {" "}
-            back{" "}
-          </button>
-          <button type="button" onClick={handleNextStep} className="border-2">
-            {" "}
-            next{" "}
-          </button>
+          <div className="button-wrapper">
+            <button
+              type="button"
+              onClick={previousStep}
+              className="button-outline"
+            >
+              {" "}
+              back{" "}
+            </button>
+            <button
+              type="button"
+              onClick={handleNextStep}
+              className="button-filled"
+            >
+              {" "}
+              next{" "}
+            </button>
+          </div>
         </div>
       </form>
     </>

@@ -66,12 +66,20 @@ const Step2: React.FC<Step2Props> = ({
               <p className="text-red-500">{errors.phoneNumber}</p>
             )}
           </div>
-          <div className="button-wrapper border-2 flex gap-10">
-            <button type="button" onClick={handleNextStep}>
-              next
-            </button>
-            <button type="button" onClick={previousStep}>
+          <div className="button-wrapper">
+            <button
+              type="button"
+              className="button-outline"
+              onClick={previousStep}
+            >
               back
+            </button>
+            <button
+              type="button"
+              className="button-filled"
+              onClick={handleNextStep}
+            >
+              next
             </button>
           </div>
         </div>
