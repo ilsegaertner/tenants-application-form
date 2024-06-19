@@ -22,7 +22,8 @@ const Step1: React.FC<Step1Props> = ({ nextStep, formData, setFormData }) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleNextStep = () => {
+  const handleNextStep = (e: React.FormEvent) => {
+    e.preventDefault();
     try {
       step1Schema.parse(formData);
       setErrors({});
