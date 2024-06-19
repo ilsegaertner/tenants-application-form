@@ -34,10 +34,64 @@ const RegistrationForm: React.FC<RegistrationFormProps> = ({
           <div className="form-group">
             <label htmlFor="name">Name</label>
             <input
+              type="text"
+              name="fullName"
+              id="name"
+              value={formData.fullName}
+              placeholder="Enter your full name"
+              onChange={handleChange}
             />{" "}
           </div>
+          <div className="form-group">
+            <label htmlFor="age" className="">
+              Age
+            </label>
+            <input
+              type="text"
+              name="age"
+              id="age"
+              value={formData.age}
+              placeholder="Enter your age"
+              onChange={handleChange}
+            />{" "}
+          </div>
+          <div className="form-group">
+            <label htmlFor="email" className="">
+              Email
+            </label>
+            <input
+              type="email"
+              name="email"
+              id="email"
+              value={formData.email}
+              placeholder="Enter your email"
+              onChange={handleChange}
+            />{" "}
+          </div>
+          <div className="form-group">
+            <label htmlFor="password" className="">
+              Password
+            </label>
+            <input
+              type="password"
+              name="password"
+              id="password"
+              value={formData.password}
+              placeholder="Enter your password"
+              onChange={handleChange}
+            />{" "}
+          </div>
+          <button
+            type="submit"
+            onClick={nextStep}
+            className="bg-blue-900 p-3 rounded-md text-white"
+          >
+            Next
+          </button>
         </div>
       </form>
     </>
   );
 };
+
+export default RegistrationForm;
