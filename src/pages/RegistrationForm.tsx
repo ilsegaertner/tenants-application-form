@@ -31,8 +31,16 @@ const RegistrationForm: React.FC<RegistrationFormProps> = ({
   const [step, setStep] = useState(1);
 
   const nextStep = () => {
-    setStep((prev) => prev + 1);
+    const newErrors = validateForm(formData);
+    setErrors(newErrors);
+    if (Object.keys(newErrors).length === 0) {
+      setStep((prev) => prev + 1);
+    }
   };
+
+  // const nextStep = () => {
+  //   setStep((prev) => prev + 1);
+  // };
 
   const previousStep = () => {
     setStep((prev) => prev - 1);
@@ -57,19 +65,19 @@ const RegistrationForm: React.FC<RegistrationFormProps> = ({
     }
   };
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    const newErrors = validateForm(formData);
-    setErrors(newErrors);
+  // const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  //   e.preventDefault();
+  //   const newErrors = validateForm(formData);
+  //   setErrors(newErrors);
 
-    if (Object.keys(newErrors).length === 0) {
-      console.log("Form data is valid:", formData);
-    }
-  };
+  //   if (Object.keys(newErrors).length === 0) {
+  //     console.log("Form data is valid:", formData);
+  //   }
+  // };
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
+  // const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  //   setFormData({ ...formData, [e.target.name]: e.target.value });
+  // };
 
   const renderStep = () => {
     switch (step) {
@@ -77,17 +85,18 @@ const RegistrationForm: React.FC<RegistrationFormProps> = ({
         return (
           <Step1
             formData={formData}
-            nextStep={nextStep}
             setFormData={setFormData}
+            nextStep={nextStep}
+            errors={errors}
           />
         );
       case 2:
         return (
           <Step2
             formData={formData}
-            nextStep={nextStep}
-            previousStep={previousStep}
             setFormData={setFormData}
+            previousStep={previousStep}
+            nextStep={nextStep}
             errors={errors}
           />
         );
@@ -95,8 +104,9 @@ const RegistrationForm: React.FC<RegistrationFormProps> = ({
         return (
           <Step3
             formData={formData}
-            previousStep={previousStep}
             setFormData={setFormData}
+            previousStep={previousStep}
+            errors={errors}
           />
         );
       default:
@@ -105,6 +115,7 @@ const RegistrationForm: React.FC<RegistrationFormProps> = ({
             formData={formData}
             nextStep={nextStep}
             setFormData={setFormData}
+            errors={errors}
           />
         );
     }

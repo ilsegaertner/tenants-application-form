@@ -6,9 +6,15 @@ interface Step1Props {
   nextStep: () => void;
   formData: { fullName: string; email: string };
   setFormData: React.Dispatch<React.SetStateAction<any>>;
+  errors: Record<string, string>;
 }
 
-const Step1: React.FC<Step1Props> = ({ nextStep, formData, setFormData }) => {
+const Step1: React.FC<Step1Props> = ({
+  nextStep,
+  formData,
+  setFormData,
+  errors,
+}) => {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
@@ -26,6 +32,9 @@ const Step1: React.FC<Step1Props> = ({ nextStep, formData, setFormData }) => {
               onChange={handleChange}
               className="w-full p-2 border border-gray-300 rounded"
             />
+            {errors.fullName && (
+              <p className="text-red-500">{errors.fullName}</p>
+            )}
           </div>
           <div className="mb-4">
             <label className="block mb-2">Email</label>
@@ -36,6 +45,7 @@ const Step1: React.FC<Step1Props> = ({ nextStep, formData, setFormData }) => {
               onChange={handleChange}
               className="w-full p-2 border border-gray-300 rounded"
             />
+            {errors.email && <p className="text-red-500">{errors.email}</p>}
           </div>
           <button type="button" onClick={nextStep}>
             next

@@ -8,8 +8,7 @@ interface Step2Props {
   previousStep: () => void;
   formData: { phoneNumber: string; email: string };
   setFormData: React.Dispatch<React.SetStateAction<any>>;
-
-  errors: any;
+  errors: Record<string, string>;
 }
 
 const Step2: React.FC<Step2Props> = ({
@@ -17,6 +16,7 @@ const Step2: React.FC<Step2Props> = ({
   previousStep,
   formData,
   setFormData,
+  errors,
 }) => {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -38,9 +38,9 @@ const Step2: React.FC<Step2Props> = ({
               placeholder="Enter your phone number"
               onChange={handleChange}
             />{" "}
-            {/* {errors.phoneNumber && (
-            <p className="text-red-500">{errors.phoneNumber}</p>
-          )} */}
+            {errors.phoneNumber && (
+              <p className="text-red-500">{errors.phoneNumber}</p>
+            )}
           </div>
           <div className="button-wrapper border-2 flex gap-10">
             <button type="button" onClick={nextStep}>

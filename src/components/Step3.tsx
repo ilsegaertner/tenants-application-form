@@ -6,12 +6,14 @@ interface Step3Props {
   previousStep: () => void;
   formData: { salary: string };
   setFormData: React.Dispatch<React.SetStateAction<any>>;
+  errors: Record<string, string>;
 }
 
 const Step3: React.FC<Step3Props> = ({
   previousStep,
   formData,
   setFormData,
+  errors,
 }) => {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -82,7 +84,7 @@ const Step3: React.FC<Step3Props> = ({
                 Mehr als 4000
               </label>
             </div>
-            {/* {errors.salary && <p className="text-red-500"> {errors.salary}</p>} */}
+            {errors.salary && <p className="text-red-500"> {errors.salary}</p>}
           </div>
           <button type="button" onClick={previousStep} className="border-2">
             {" "}
