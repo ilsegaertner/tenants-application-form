@@ -28,7 +28,8 @@ const Step3: React.FC<Step3Props> = ({
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleNextStep = () => {
+  const handleNextStep = (e: React.FormEvent) => {
+    e.preventDefault();
     try {
       step3Schema.parse(formData);
       setErrors({});
@@ -52,8 +53,12 @@ const Step3: React.FC<Step3Props> = ({
             <label htmlFor="salary" className="">
               Salary range
             </label>
-            <div className="salary-wrapper flex flex-col">
-              <label>
+            <div
+              className="salary-wrapper flex flex-col"
+              role="radiogroup"
+              aria-labelledby="salary"
+            >
+              <label htmlFor="salary1">
                 <input
                   type="radio"
                   name="salary"
@@ -61,10 +66,11 @@ const Step3: React.FC<Step3Props> = ({
                   value="0-1000"
                   checked={formData.salary === "0-1000"}
                   onChange={handleChange}
+                  aria-labelledby="salary1Label"
                 />
-                0-1000
+                <span id="salary1Label">0-1000</span>
               </label>
-              <label>
+              <label htmlFor="salary2">
                 <input
                   type="radio"
                   name="salary"
@@ -72,10 +78,11 @@ const Step3: React.FC<Step3Props> = ({
                   value="1000-2000"
                   checked={formData.salary === "1000-2000"}
                   onChange={handleChange}
+                  aria-labelledby="salary2Label"
                 />
                 1000-2000
               </label>
-              <label>
+              <label htmlFor="salary3">
                 <input
                   type="radio"
                   name="salary"
@@ -83,10 +90,11 @@ const Step3: React.FC<Step3Props> = ({
                   value="2000-3000"
                   checked={formData.salary === "2000-3000"}
                   onChange={handleChange}
+                  aria-labelledby="salary3Label"
                 />
                 2000-3000
               </label>
-              <label>
+              <label htmlFor="salary4">
                 <input
                   type="radio"
                   name="salary"
@@ -94,10 +102,11 @@ const Step3: React.FC<Step3Props> = ({
                   value="3000-4000"
                   checked={formData.salary === "3000-4000"}
                   onChange={handleChange}
+                  aria-labelledby="salary4Label"
                 />
                 3000-4000
               </label>
-              <label>
+              <label htmlFor="salary5">
                 <input
                   type="radio"
                   name="salary"
@@ -105,6 +114,7 @@ const Step3: React.FC<Step3Props> = ({
                   value=">4000"
                   checked={formData.salary === ">4000"}
                   onChange={handleChange}
+                  aria-labelledby="salary5Label"
                 />
                 Mehr als 4000
               </label>
