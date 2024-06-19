@@ -3,15 +3,17 @@ import "./App.css";
 import RegistrationForm from "./pages/RegistrationForm";
 
 function App() {
-  const initialValues = {
-    fullName: "",
-    phoneNumber: "",
-    email: "",
-    salary: ""
-  };
+  // const initialValues = {
+  //   fullName: "",
+  //   phoneNumber: "",
+  //   email: "",
+  //   salary: ""
+  // };
   return (
     <div className="App">
-      <RegistrationForm initialValues={initialValues} />
+      <RegistrationForm 
+      // initialValues={initialValues} 
+      />
     </div>
   );
 }

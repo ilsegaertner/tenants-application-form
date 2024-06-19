@@ -1,22 +1,46 @@
-import React from "react";
+import React, { useState } from "react";
+import { z } from "zod";
+
+const step3Schema = z.object({
+  salary: z.string().min(1, "You must select a salary range"),
+});
 
 // Salary range component
 
 interface Step3Props {
   previousStep: () => void;
+  nextStep: () => void;
   formData: { salary: string };
   setFormData: React.Dispatch<React.SetStateAction<any>>;
-  errors: Record<string, string>;
+  // errors: Record<string, string>;
 }
 
 const Step3: React.FC<Step3Props> = ({
   previousStep,
+  nextStep,
   formData,
   setFormData,
-  errors,
 }) => {
+  const [errors, setErrors] = useState<Record<string, string>>({});
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleNextStep = () => {
+    try {
+      step3Schema.parse(formData);
+      setErrors({});
+      nextStep();
+    } catch (error) {
+      if (error instanceof z.ZodError) {
+        const newErrors = error.errors.reduce((acc, err) => {
+          acc[err.path[0]] = err.message;
+          return acc;
+        }, {} as Record<string, string>);
+        setErrors(newErrors);
+      }
+    }
   };
 
   return (
@@ -89,6 +113,10 @@ const Step3: React.FC<Step3Props> = ({
           <button type="button" onClick={previousStep} className="border-2">
             {" "}
             back{" "}
+          </button>
+          <button type="button" onClick={handleNextStep} className="border-2">
+            {" "}
+            next{" "}
           </button>
         </div>
       </form>

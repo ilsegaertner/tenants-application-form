@@ -1,14 +1,21 @@
-import React from "react";
+import React, { useState } from "react";
 import { error } from "console";
+import { z } from "zod";
 
 // Phone number component
+
+const step2Schema = z.object({
+  phoneNumber: z
+    .string()
+    .min(7, "Phone Number is required and should be valid"),
+  // salary: z.string().min(1, "You must select a salary range"),
+});
 
 interface Step2Props {
   nextStep: () => void;
   previousStep: () => void;
-  formData: { phoneNumber: string; email: string };
+  formData: { phoneNumber: string };
   setFormData: React.Dispatch<React.SetStateAction<any>>;
-  errors: Record<string, string>;
 }
 
 const Step2: React.FC<Step2Props> = ({
@@ -16,10 +23,27 @@ const Step2: React.FC<Step2Props> = ({
   previousStep,
   formData,
   setFormData,
-  errors,
 }) => {
+  const [errors, setErrors] = useState<Record<string, string>>({});
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleNextStep = () => {
+    try {
+      step2Schema.parse(formData);
+      setErrors({});
+      nextStep();
+    } catch (error) {
+      if (error instanceof z.ZodError) {
+        const newErrors = error.errors.reduce((acc, err) => {
+          acc[err.path[0]] = err.message;
+          return acc;
+        }, {} as Record<string, string>);
+        setErrors(newErrors);
+      }
+    }
   };
 
   return (
@@ -43,7 +67,7 @@ const Step2: React.FC<Step2Props> = ({
             )}
           </div>
           <div className="button-wrapper border-2 flex gap-10">
-            <button type="button" onClick={nextStep}>
+            <button type="button" onClick={handleNextStep}>
               next
             </button>
             <button type="button" onClick={previousStep}>
