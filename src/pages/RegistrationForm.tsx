@@ -2,6 +2,9 @@ import React from "react";
 import { useState } from "react";
 import { z } from "zod";
 import Step1 from "../components/Step1";
+import Step2 from "../components/Step2";
+import Step3 from "../components/Step3";
+import { error } from "console";
 
 const registrationSchema = z.object({
   fullName: z.string().min(2, "Full Name is required"),
@@ -68,12 +71,68 @@ const RegistrationForm: React.FC<RegistrationFormProps> = ({
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
+  const renderStep = () => {
+    switch (step) {
+      case 1:
+        return (
+          <Step1
+            formData={formData}
+            nextStep={nextStep}
+            setFormData={setFormData}
+          />
+        );
+      case 2:
+        return (
+          <Step2
+            formData={formData}
+            nextStep={nextStep}
+            previousStep={previousStep}
+            setFormData={setFormData}
+            errors={errors}
+          />
+        );
+      case 3:
+        return (
+          <Step3
+            formData={formData}
+            previousStep={previousStep}
+            setFormData={setFormData}
+          />
+        );
+      default:
+        return (
+          <Step1
+            formData={formData}
+            nextStep={nextStep}
+            setFormData={setFormData}
+          />
+        );
+    }
+  };
+
   return (
     <>
+      {renderStep()}
 
-    <Step1 formData={formData} nextStep={nextStep} setFormData={setFormData}/>
+      {/* <Step1
+        formData={formData}
+        nextStep={nextStep}
+        setFormData={setFormData}
+      />
+      <Step2
+        formData={formData}
+        nextStep={nextStep}
+        previousStep={previousStep}
+        setFormData={setFormData}
+        errors={errors}
+      />
+      <Step3
+        formData={formData}
+        previousStep={previousStep}
+        setFormData={setFormData}
+      /> */}
 
-      <form
+      {/* <form
         onSubmit={handleSubmit}
         className="form p-5 border-4 border-blue-100 rounded-xl m-auto justify-center flex flex-col max-w-lg bg-yellow-200"
       >
@@ -194,7 +253,7 @@ const RegistrationForm: React.FC<RegistrationFormProps> = ({
             Next
           </button>
         </div>
-      </form>
+      </form> */}
     </>
   );
 };
