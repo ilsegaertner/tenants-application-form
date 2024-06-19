@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { z } from "zod";
+import "../App.css";
 
 const step3Schema = z.object({
   salary: z.string().min(1, "You must select a salary range"),

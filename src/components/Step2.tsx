@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { error } from "console";
 import { z } from "zod";
+import "../App.css";
 
 // Phone number component
 
