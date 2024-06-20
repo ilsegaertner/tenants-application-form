@@ -5,6 +5,7 @@ import Step1 from "../components/Step1";
 import Step2 from "../components/Step2";
 import Step3 from "../components/Step3";
 import LastStep from "../components/LastStep";
+import ProgressIndicator from "../components/ProgressIndicator";
 
 const RegistrationForm: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -15,9 +16,14 @@ const RegistrationForm: React.FC = () => {
   });
   // const [errors, setErrors] = useState<Record<string, string>>({});
   const [step, setStep] = useState(1);
+  const totalSteps = 4;
 
   const nextStep = () => setStep((prev) => prev + 1);
   const prevStep = () => setStep((prev) => prev - 1);
+
+  const getProgressValue = () => {
+    return (step / totalSteps) * 100;
+  }
 
   const renderStep = () => {
     switch (step) {
@@ -62,8 +68,11 @@ const RegistrationForm: React.FC = () => {
 
   return (
     <>
-      <div className="container-wrapper flex flex-col items-center border-2 mx-60 bg-gray-800">
-        <Link to="/">Buena</Link>
+      <div className="container-wrapper noborder-2 nop-10">
+        <Link to="/" className="notext-xl hover:notext-blue-800 nopb-10">
+          Buena
+        </Link>
+        <ProgressIndicator progress={getProgressValue()}/>
         {renderStep()}
       </div>
     </>
