@@ -2,7 +2,9 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import ModalComponent from "./ModalComponent";
 import { AnimatePresence } from "framer-motion";
-import Toast from "./Toast";
+import { Button } from "../components/ui/button";
+
+import { toast } from "sonner";
 
 interface LastStepProps {
   previousStep: () => void;
@@ -16,7 +18,6 @@ interface LastStepProps {
 
 const LastStep: React.FC<LastStepProps> = ({ previousStep, formData }) => {
   const [showModal, setShowModal] = useState(false);
-  const [showToast, setShowToast] = useState(false);
 
   const navigate = useNavigate();
 
@@ -26,11 +27,10 @@ const LastStep: React.FC<LastStepProps> = ({ previousStep, formData }) => {
   };
 
   const handleConfirm = () => {
-    // alert("Form data submitted successfully");
     setShowModal(false);
-    setShowToast(true);
+    toast("Form data is submitted successfully.");
+
     setTimeout(() => {
-      setShowToast(false);
       navigate("/");
     }, 2000);
   };
@@ -58,28 +58,26 @@ const LastStep: React.FC<LastStepProps> = ({ previousStep, formData }) => {
             </label>
           </div>
           <div className="button-wrapper flex gap-10">
-            <button
+            <Button
               type="button"
               onClick={previousStep}
               className="button-outline"
             >
               back
-            </button>
-            <button type="submit" className="button-filled">
+            </Button>
+            <Button type="submit" className="button-filled">
               {" "}
               Submit
-            </button>
+            </Button>
           </div>
         </div>
       </form>
       <AnimatePresence>
         {showModal && (
-          <ModalComponent onCancel={handleCancel} onConfirm={handleConfirm} />
-        )}
-        {showToast && (
-          <Toast
-            message="Form data submitted succesfully"
-            onClose={() => setShowToast(false)}
+          <ModalComponent
+            onCancel={handleCancel}
+            onConfirm={handleConfirm}
+            showModal={showModal}
           />
         )}
       </AnimatePresence>
