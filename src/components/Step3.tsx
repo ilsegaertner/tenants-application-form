@@ -13,6 +13,7 @@ import {
   FormMessage,
 } from "../components/ui/form";
 import { Input } from "../components/ui/input";
+import { Button } from "../components/ui/button";
 import { Label } from "../components/ui/label";
 import { RadioGroup, RadioGroupItem } from "../components/ui/radio-group";
 import "../App.css";
@@ -101,17 +102,17 @@ const Step3: React.FC<Step3Props> = ({
           />
 
           <div className="button-wrapper">
-            <button
+            <Button
               type="button"
               onClick={previousStep}
               className="button-outline"
             >
               {" "}
               back{" "}
-            </button>
-            <button type="submit" className="button-filled">
+            </Button>
+            <Button type="submit" className="button-filled">
               next
-            </button>
+            </Button>
           </div>
         </form>
       </Form>

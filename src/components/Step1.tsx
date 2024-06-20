@@ -120,32 +120,6 @@ const Step1: React.FC<Step1Props> = ({ nextStep, formData, setFormData }) => {
             )}
           />
 
-          {/* <div className="form-wrapper border-2">
-            <div className="mb-4 ">
-              <label className="block mb-2">Full Name</label>
-              <input
-                type="text"
-                name="fullName"
-                value={formData.fullName}
-                onChange={handleChange}
-                className="w-full p-2 border border-gray-300 rounded"
-              />
-            </div>
-            <div className="mb-4">
-              <label className="block mb-2">Email</label>
-              <input
-                type="email"
-                name="email"
-                value={formData.email}
-                onChange={handleChange}
-                className="w-full p-2 border border-gray-300 rounded"
-              />
-              {errors.email && <p className="text-red-500">{errors.email}</p>}
-            </div> 
-
-           
-          </div> */}
-
           <Button type="submit">Next</Button>
         </form>
       </Form>

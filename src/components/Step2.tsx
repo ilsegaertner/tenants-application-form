@@ -89,9 +89,7 @@ const Step2: React.FC<Step2Props> = ({
             >
               back
             </button>
-            <button type="submit" className="button-filled">
-              next
-            </button>
+            <Button type="submit">next</Button>
           </div>
         </form>
       </Form>
