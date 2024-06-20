@@ -5,7 +5,6 @@
 .form-group {
   margin-bottom: 1rem;
   display: flex;
-  /* justify-content: space-between; */
   flex-direction: column;
 }
 
@@ -30,7 +29,3 @@
 .form-outer {
   @apply px-10 my-8;
 }
-
-/* .container-wrapper {
-  @apply border-2 flex justify-center;
-} */
