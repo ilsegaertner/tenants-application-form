@@ -4,7 +4,6 @@ import { useState } from "react";
 import { Button } from "../components/ui/button";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-
 import {
   Form,
   FormControl,
@@ -30,86 +29,99 @@ interface Step1Props {
 }
 
 const Step1: React.FC<Step1Props> = ({ nextStep, formData, setFormData }) => {
-  const [errors, setErrors] = useState<Record<string, string>>({});
-
-  // define the form
-  const step1Form = useForm<z.infer<typeof step1Schema>>({
+  // Define the form using useForm hook with Zod resolver
+  const {
+    control,
+    handleSubmit,
+    setValue,
+    formState: { errors },
+  } = useForm<z.infer<typeof step1Schema>>({
     resolver: zodResolver(step1Schema),
-    defaultValues: {
-      fullName: "",
-      email: "",
-    },
+    defaultValues: formData,
   });
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+  React.useEffect(() => {
+    setValue("fullName", formData.fullName);
+    setValue("email", formData.email);
+  }, [formData, setValue]);
+
+  const onSubmit = (data: z.infer<typeof step1Schema>) => {
+    setFormData(data);
+    nextStep();
   };
 
-  const handleNextStep = (e: React.FormEvent) => {
-    e.preventDefault();
-    try {
-      step1Schema.parse(formData);
-      setErrors({});
-      nextStep();
-    } catch (error) {
-      if (error instanceof z.ZodError) {
-        const newErrors = error.errors.reduce((acc, err) => {
-          acc[err.path[0]] = err.message;
-          return acc;
-        }, {} as Record<string, string>);
-        setErrors(newErrors);
-      }
-    }
-  };
+  // define the form
+  // const step1Form = useForm<z.infer<typeof step1Schema>>({
+  //   resolver: zodResolver(step1Schema),
+  //   defaultValues: {
+  //     fullName: "",
+  //     email: "",
+  //   },
+  // });
+
+  // const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  //   setFormData({ ...formData, [e.target.name]: e.target.value });
+  // };
+
+  // const handleNextStep = (e: React.FormEvent) => {
+  //   e.preventDefault();
+  //   try {
+  //     step1Schema.parse(formData);
+  //     setErrors({});
+  //     nextStep();
+  //   } catch (error) {
+  //     if (error instanceof z.ZodError) {
+  //       const newErrors = error.errors.reduce((acc, err) => {
+  //         acc[err.path[0]] = err.message;
+  //         return acc;
+  //       }, {} as Record<string, string>);
+  //       setErrors(newErrors);
+  //     }
+  //   }
+  // };
 
   return (
     <>
-      <Form {...step1Form}>
-        <form className="form-outer" onSubmit={(e) => e.preventDefault()}>
+      <Form {...useForm()}>
+        <form className="form-outer" onSubmit={handleSubmit(onSubmit)}>
           <FormField
-            control={step1Form.control}
+            control={control}
             name="fullName"
             render={({ field }) => (
               <FormItem>
                 <FormLabel>Full Name</FormLabel>
                 <FormControl>
-                  <Input
-                    placeholder="Full Name"
-                    {...field}
-                    value={formData.fullName}
-                    onChange={handleChange}
-                  />
+                  <Input placeholder="Full Name" {...field} />
                 </FormControl>
                 {errors.fullName && (
-                  <p className="text-red-500">{errors.fullName}</p>
+                  <FormMessage>{errors.fullName.message}</FormMessage>
                 )}
-                <FormMessage />
+                <FormDescription>
+                  This is your public display name.
+                </FormDescription>
               </FormItem>
             )}
           />
 
           <FormField
-            control={step1Form.control}
+            control={control}
             name="email"
             render={({ field }) => (
               <FormItem>
                 <FormLabel>Email</FormLabel>
                 <FormControl>
-                  <Input
-                    placeholder="Your Email"
-                    {...field}
-                    value={formData.email}
-                    onChange={handleChange}
-                  />
+                  <Input placeholder="Your Email" {...field} />
                 </FormControl>
-                {errors.email && <p className="text-red-500">{errors.email}</p>}
-                <FormMessage />
+                {errors.email && (
+                  <FormMessage> {errors.email.message}</FormMessage>
+                )}
+                <FormDescription>Enter your email address.</FormDescription>
               </FormItem>
             )}
           />
 
-          <div className="form-wrapper border-2">
-            {/* <div className="mb-4 ">
+          {/* <div className="form-wrapper border-2">
+            <div className="mb-4 ">
               <label className="block mb-2">Full Name</label>
               <input
                 type="text"
@@ -129,16 +141,12 @@ const Step1: React.FC<Step1Props> = ({ nextStep, formData, setFormData }) => {
                 className="w-full p-2 border border-gray-300 rounded"
               />
               {errors.email && <p className="text-red-500">{errors.email}</p>}
-            </div> */}
+            </div> 
 
-            <Button
-              type="submit"
-              className="button-filled"
-              onClick={handleNextStep}
-            >
-              next
-            </Button>
-          </div>
+           
+          </div> */}
+
+          <Button type="submit">Next</Button>
         </form>
       </Form>
     </>
