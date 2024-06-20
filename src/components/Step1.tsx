@@ -49,36 +49,6 @@ const Step1: React.FC<Step1Props> = ({ nextStep, formData, setFormData }) => {
     nextStep();
   };
 
-  // define the form
-  // const step1Form = useForm<z.infer<typeof step1Schema>>({
-  //   resolver: zodResolver(step1Schema),
-  //   defaultValues: {
-  //     fullName: "",
-  //     email: "",
-  //   },
-  // });
-
-  // const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-  //   setFormData({ ...formData, [e.target.name]: e.target.value });
-  // };
-
-  // const handleNextStep = (e: React.FormEvent) => {
-  //   e.preventDefault();
-  //   try {
-  //     step1Schema.parse(formData);
-  //     setErrors({});
-  //     nextStep();
-  //   } catch (error) {
-  //     if (error instanceof z.ZodError) {
-  //       const newErrors = error.errors.reduce((acc, err) => {
-  //         acc[err.path[0]] = err.message;
-  //         return acc;
-  //       }, {} as Record<string, string>);
-  //       setErrors(newErrors);
-  //     }
-  //   }
-  // };
-
   return (
     <>
       <Form {...useForm()}>
