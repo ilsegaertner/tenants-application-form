@@ -1,6 +1,18 @@
-import React, { useState } from "react";
-import { error } from "console";
+import React, { useState, useEffect } from "react";
+import { useForm } from "react-hook-form";
 import { z } from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { Button } from "../components/ui/button";
+import {
+  Form,
+  FormControl,
+  FormDescription,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "../components/ui/form";
+import { Input } from "../components/ui/input";
 import "../App.css";
 
 // Phone number component
@@ -28,49 +40,46 @@ const Step2: React.FC<Step2Props> = ({
   formData,
   setFormData,
 }) => {
-  const [errors, setErrors] = useState<Record<string, string>>({});
+  const {
+    control,
+    handleSubmit,
+    setValue,
+    formState: { errors },
+  } = useForm<z.infer<typeof step2Schema>>({
+    resolver: zodResolver(step2Schema),
+    defaultValues: formData,
+  });
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
+  useEffect(() => {
+    setValue("phoneNumber", formData.phoneNumber);
+  }, [formData, setValue]);
 
-  const handleNextStep = (e: React.FormEvent) => {
-    e.preventDefault();
-    try {
-      step2Schema.parse(formData);
-      setErrors({});
-      nextStep();
-    } catch (error) {
-      if (error instanceof z.ZodError) {
-        const newErrors = error.errors.reduce((acc, err) => {
-          acc[err.path[0]] = err.message;
-          return acc;
-        }, {} as Record<string, string>);
-        setErrors(newErrors);
-      }
-    }
+  const onSubmit = (data: z.infer<typeof step2Schema>) => {
+    setFormData({ ...formData, ...data });
+    nextStep();
   };
 
   return (
     <>
-      <form className="form-outer">
-        <div className="form-wrapper border-2">
-          <div className="form-group">
-            <label htmlFor="phoneNumber" className="">
-              Phone Number
-            </label>
-            <input
-              type="text"
-              name="phoneNumber"
-              id="phoneNumber"
-              value={formData.phoneNumber}
-              placeholder="Enter your phone number"
-              onChange={handleChange}
-            />{" "}
-            {errors.phoneNumber && (
-              <p className="text-red-500">{errors.phoneNumber}</p>
+      <Form {...useForm()}>
+        <form className="form-outer" onSubmit={handleSubmit(onSubmit)}>
+          <FormField
+            control={control}
+            name="phoneNumber"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Phone Number</FormLabel>
+                <FormControl>
+                  <Input placeholder="Enter your phone number" {...field} />
+                </FormControl>
+                {errors.phoneNumber && (
+                  <FormMessage>{errors.phoneNumber.message}</FormMessage>
+                )}
+                <FormDescription>Enter your phone number.</FormDescription>
+              </FormItem>
             )}
-          </div>
+          />
+
           <div className="button-wrapper">
             <button
               type="button"
@@ -79,16 +88,12 @@ const Step2: React.FC<Step2Props> = ({
             >
               back
             </button>
-            <button
-              type="submit"
-              className="button-filled"
-              onClick={handleNextStep}
-            >
+            <button type="submit" className="button-filled">
               next
             </button>
           </div>
-        </div>
-      </form>
+        </form>
+      </Form>
     </>
   );
 };
