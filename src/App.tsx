@@ -4,6 +4,7 @@ import "./App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import RegistrationForm from "./pages/RegistrationForm";
 import HomePage from "./pages/HomePage";
+import { Toaster } from "src/components/ui/sonner";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
           <Route path="/register" element={<RegistrationForm />} />
         </Routes>
       </div>
+      <Toaster />
     </BrowserRouter>
   );
 }
