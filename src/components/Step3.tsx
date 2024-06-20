@@ -1,5 +1,20 @@
-import React, { useState } from "react";
+import React, { useEffect } from "react";
 import { z } from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
+
+import {
+  Form,
+  FormControl,
+  FormDescription,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "../components/ui/form";
+import { Input } from "../components/ui/input";
+import { Label } from "../components/ui/label";
+import { RadioGroup, RadioGroupItem } from "../components/ui/radio-group";
 import "../App.css";
 
 const step3Schema = z.object({
@@ -13,7 +28,6 @@ interface Step3Props {
   nextStep: () => void;
   formData: { salary: string };
   setFormData: React.Dispatch<React.SetStateAction<any>>;
-  // errors: Record<string, string>;
 }
 
 const Step3: React.FC<Step3Props> = ({
@@ -22,105 +36,70 @@ const Step3: React.FC<Step3Props> = ({
   formData,
   setFormData,
 }) => {
-  const [errors, setErrors] = useState<Record<string, string>>({});
+  const {
+    control,
+    handleSubmit,
+    setValue,
+    formState: { errors },
+  } = useForm<z.infer<typeof step3Schema>>({
+    resolver: zodResolver(step3Schema),
+    defaultValues: formData,
+  });
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
+  useEffect(() => {
+    setValue("salary", formData.salary);
+  }, [formData, setValue]);
 
-  const handleNextStep = (e: React.FormEvent) => {
-    e.preventDefault();
-    try {
-      step3Schema.parse(formData);
-      setErrors({});
-      nextStep();
-    } catch (error) {
-      if (error instanceof z.ZodError) {
-        const newErrors = error.errors.reduce((acc, err) => {
-          acc[err.path[0]] = err.message;
-          return acc;
-        }, {} as Record<string, string>);
-        setErrors(newErrors);
-      }
-    }
+  const onSubmit = (data: z.infer<typeof step3Schema>) => {
+    setFormData({ ...formData, ...data });
+    nextStep();
   };
 
   return (
     <>
-      <form className="form-outer">
-        <div className="form-wrapper border-2">
-          <div className="form-group border-2">
-            <label htmlFor="salary" className="">
-              Salary range
-            </label>
-            <div
-              className="salary-wrapper flex flex-col"
-              role="radiogroup"
-              aria-labelledby="salary"
-            >
-              <label htmlFor="salary1">
-                <input
-                  type="radio"
-                  name="salary"
-                  id="salary1"
-                  value="0-1000"
-                  checked={formData.salary === "0-1000"}
-                  onChange={handleChange}
-                  aria-labelledby="salary1Label"
-                />
-                <span id="salary1Label">0-1000</span>
-              </label>
-              <label htmlFor="salary2">
-                <input
-                  type="radio"
-                  name="salary"
-                  id="salary2"
-                  value="1000-2000"
-                  checked={formData.salary === "1000-2000"}
-                  onChange={handleChange}
-                  aria-labelledby="salary2Label"
-                />
-                1000-2000
-              </label>
-              <label htmlFor="salary3">
-                <input
-                  type="radio"
-                  name="salary"
-                  id="salary3"
-                  value="2000-3000"
-                  checked={formData.salary === "2000-3000"}
-                  onChange={handleChange}
-                  aria-labelledby="salary3Label"
-                />
-                2000-3000
-              </label>
-              <label htmlFor="salary4">
-                <input
-                  type="radio"
-                  name="salary"
-                  id="salary4"
-                  value="3000-4000"
-                  checked={formData.salary === "3000-4000"}
-                  onChange={handleChange}
-                  aria-labelledby="salary4Label"
-                />
-                3000-4000
-              </label>
-              <label htmlFor="salary5">
-                <input
-                  type="radio"
-                  name="salary"
-                  id="salary5"
-                  value=">4000"
-                  checked={formData.salary === ">4000"}
-                  onChange={handleChange}
-                  aria-labelledby="salary5Label"
-                />
-                Mehr als 4000
-              </label>
-            </div>
-            {errors.salary && <p className="text-red-500"> {errors.salary}</p>}
-          </div>
+      <Form {...useForm()}>
+        <form className="form-outer" onSubmit={handleSubmit(onSubmit)}>
+          <FormField
+            control={control}
+            name="salary"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Salary Range</FormLabel>
+                <FormControl>
+                  <RadioGroup
+                    defaultValue={field.value}
+                    onValueChange={(value) => field.onChange(value)}
+                  >
+                    <div className="flex items-center space-x-2">
+                      <RadioGroupItem value="0-1000" id="salary1" />
+                      <Label htmlFor="salary1">0-1000</Label>
+                    </div>
+                    <div className="flex items-center space-x-2">
+                      <RadioGroupItem value="1000-2000" id="salary2" />
+                      <Label htmlFor="salary2">1000-2000</Label>
+                    </div>
+                    <div className="flex items-center space-x-2">
+                      <RadioGroupItem value="2000-3000" id="salary3" />
+                      <Label htmlFor="salary3">2000-3000</Label>
+                    </div>
+                    <div className="flex items-center space-x-2">
+                      <RadioGroupItem value="3000-4000" id="salary4" />
+                      <Label htmlFor="salary4">3000-4000</Label>
+                    </div>
+                    <div className="flex items-center space-x-2">
+                      <RadioGroupItem value=">4000" id="salary5" />
+                      <Label htmlFor="salary5">Mehr als 4000</Label>
+                    </div>
+                  </RadioGroup>
+                </FormControl>
+                {errors.salary && (
+                  <FormMessage>{errors.salary.message}</FormMessage>
+                )}
+                <FormDescription>Select your salary range.</FormDescription>
+              </FormItem>
+            )}
+          />
+
           <div className="button-wrapper">
             <button
               type="button"
@@ -130,16 +109,12 @@ const Step3: React.FC<Step3Props> = ({
               {" "}
               back{" "}
             </button>
-            <button
-              type="submit"
-              onClick={handleNextStep}
-              className="button-filled"
-            >
+            <button type="submit" className="button-filled">
               next
             </button>
           </div>
-        </div>
-      </form>
+        </form>
+      </Form>
     </>
   );
 };
