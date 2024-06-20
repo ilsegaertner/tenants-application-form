@@ -5,8 +5,11 @@ import "../../src/App.css";
 const HomePage = () => {
   return (
     <>
-      <div className="px-72 my-8">
-        <h1 className="text-xl font-bold mb-10"> Buena</h1>
+      <div className="px-72 my-8 buena-wrapper">
+        <h1 className="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl buena">
+          {" "}
+          Buena
+        </h1>
         <Link to={"/register"} className="button-filled">
           {" "}
           Find a flat
