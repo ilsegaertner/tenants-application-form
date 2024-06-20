@@ -12,7 +12,6 @@ import {
   FormLabel,
   FormMessage,
 } from "../components/ui/form";
-import { Input } from "../components/ui/input";
 import { Button } from "../components/ui/button";
 import { Label } from "../components/ui/label";
 import { RadioGroup, RadioGroupItem } from "../components/ui/radio-group";
@@ -102,11 +101,7 @@ const Step3: React.FC<Step3Props> = ({
           />
 
           <div className="button-wrapper">
-            <Button
-              type="button"
-              onClick={previousStep}
-              className="button-outline"
-            >
+            <Button type="button" onClick={previousStep} variant="outline">
               {" "}
               back{" "}
             </Button>

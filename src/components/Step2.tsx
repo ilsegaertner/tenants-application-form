@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -82,13 +82,9 @@ const Step2: React.FC<Step2Props> = ({
           />
 
           <div className="button-wrapper">
-            <button
-              type="button"
-              className="button-outline"
-              onClick={previousStep}
-            >
+            <Button type="button" onClick={previousStep} variant="outline">
               back
-            </button>
+            </Button>
             <Button type="submit">next</Button>
           </div>
         </form>

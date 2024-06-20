@@ -1,5 +1,5 @@
 import React from "react";
-import "./App.css";
+import "../src/index.css";
 // import { ReactDOM } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import RegistrationForm from "./pages/RegistrationForm";

@@ -58,11 +58,7 @@ const LastStep: React.FC<LastStepProps> = ({ previousStep, formData }) => {
             </label>
           </div>
           <div className="button-wrapper flex gap-10">
-            <Button
-              type="button"
-              onClick={previousStep}
-              className="button-outline"
-            >
+            <Button type="button" onClick={previousStep} variant="outline">
               back
             </Button>
             <Button type="submit" className="button-filled">
