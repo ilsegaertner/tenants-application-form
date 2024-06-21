@@ -66,9 +66,7 @@ const Step1: React.FC<Step1Props> = ({ nextStep, formData, setFormData }) => {
                   {errors.fullName && (
                     <FormMessage>{errors.fullName.message}</FormMessage>
                   )}
-                  {/* <FormDescription>
-                  This is your public display name.
-                </FormDescription> */}
+              
                 </FormItem>
               )}
             />
@@ -92,7 +90,7 @@ const Step1: React.FC<Step1Props> = ({ nextStep, formData, setFormData }) => {
             />
           </div>
           <div className="button-wrapper">
-            <Button type="submit">Next</Button>
+            <Button type="submit">Next </Button>
           </div>
         </form>
       </Form>
