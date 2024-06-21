@@ -82,7 +82,7 @@ const Step2: React.FC<Step2Props> = ({
           />
 
           <div className="button-wrapper">
-            <Button type="button" onClick={previousStep} variant="outline">
+            <Button type="button" onClick={previousStep} variant="secondary">
               back
             </Button>
             <Button type="submit">next</Button>
