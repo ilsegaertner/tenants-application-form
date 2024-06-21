@@ -6,7 +6,6 @@ import { Button } from "../components/ui/button";
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -76,7 +75,6 @@ const Step2: React.FC<Step2Props> = ({
                 {errors.phoneNumber && (
                   <FormMessage>{errors.phoneNumber.message}</FormMessage>
                 )}
-                {/* <FormDescription>Enter your phone number.</FormDescription> */}
               </FormItem>
             )}
           />
