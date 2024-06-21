@@ -26,13 +26,13 @@ Download and install Docker from [https://www.docker.com/products/docker-desktop
 
 Open a terminal, navigate to the project directory, and run:
 
-##### docker build -t tenants-application-form
+###### docker build -t tenants-application-form
 
 ### Run the Docker Container
 
 Run the following command to start the application:
 
-##### docker run -p 3000:80 tenants-application-form
+###### docker run -p 3000:80 tenants-application-form
 
 ### Open in Browser
 
