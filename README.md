@@ -2,6 +2,8 @@
 
 This project is a multi-step application form for tenants to register with a company and start booking apartments. It includes fields for full name, email, phone number, and salary indication. The form also includes a progress indicator and a summary of all the data entered during the flow, displayed on the last page.
 
+![Screenshot of Registration Form](https://github.com/ilsegaertner/tenants-application-form/blob/main/src/assets/registration-form_screenshot.png)
+
 ## Features
 
 - Multi-step form with progress indicator
