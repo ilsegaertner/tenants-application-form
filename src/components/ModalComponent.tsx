@@ -47,7 +47,7 @@ const ModalComponent: React.FC<ModalComponentProps> = ({
             </AlertDialogHeader>
             <AlertDialogFooter>
               <AlertDialogCancel asChild>
-                <Button variant="outline" onClick={onCancel}>
+                <Button variant="secondary" onClick={onCancel}>
                   Cancel
                 </Button>
               </AlertDialogCancel>
