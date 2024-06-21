@@ -23,6 +23,14 @@
     @apply nofont-semibold;
   }
 
+  .form-summary {
+    @apply noflex nojustify-between;
+  }
+
+  .span-text {
+    @apply noopacity-100;
+  }
+
   header {
     @apply noblock  notracking-tight nosticky notop-1 nomb-10;
   }

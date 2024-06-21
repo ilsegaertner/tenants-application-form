@@ -64,7 +64,7 @@ const Step3: React.FC<Step3Props> = ({
             name="salary"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Salary Range</FormLabel>
+                <FormLabel>What's Your Salary Range?</FormLabel>
                 <FormControl>
                   <RadioGroup
                     defaultValue={field.value}

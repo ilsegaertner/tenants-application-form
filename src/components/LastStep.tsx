@@ -44,17 +44,27 @@ const LastStep: React.FC<LastStepProps> = ({ previousStep, formData }) => {
       <form className="form-outer" onSubmit={handleSubmit}>
         <div className="form-wrapper border-2">
           <div className="form-group border-2">
+            <h2 className="nofont-semibold nomb-4">Your Data</h2>
             <label>
-              <p>Your name: {formData.fullName}</p>
+              <p className="form-summary">
+                Name:
+                <span className="span-text">{formData.fullName}</span>
+              </p>
             </label>
             <label>
-              <p>Your email: {formData.email}</p>
+              <p className="form-summary">
+                Email: <span className="span-text">{formData.email}</span>
+              </p>
             </label>
             <label>
-              <p>Your phone number: {formData.phoneNumber}</p>
+              <p className="form-summary">
+                Phone: <span className="span-text">{formData.phoneNumber}</span>
+              </p>
             </label>
             <label>
-              <p> Your salary: {formData.salary}</p>
+              <p className="form-summary">
+                Salary: <span className="span-text">{formData.salary}</span>
+              </p>
             </label>
           </div>
           <div className="button-wrapper flex gap-10">
@@ -63,7 +73,7 @@ const LastStep: React.FC<LastStepProps> = ({ previousStep, formData }) => {
             </Button>
             <Button type="submit" className="button-filled">
               {" "}
-              Submit
+              That's correct
             </Button>
           </div>
         </div>
