@@ -12,7 +12,7 @@ This project is a multi-step application form for tenants to register with a com
 
 ## View the Application
 
-You can view the application live at:
+You can view the application live at: [https://tenants-form.netlify.app/register]
 
 ## Run Locally with Docker
 
