@@ -4,11 +4,12 @@
 
 @layer components {
   .outer-wrapper {
-    @apply noflex nojustify-center noitems-center noh-screen;
+    @apply noflex nojustify-center noitems-center noh-screen noflex-col sm:noflex-row;
   }
 
-  .container-wrapper {
-    @apply nomx-4 noflex nojustify-center noalign-middle noflex-col now-11/12 sm:now-9/12 md:now-6/12 lg:now-4/12 nom-auto noshadow-lg norounded-sm nop-10;
+  .container-wrapper,
+  .container-wrapper_homepage {
+    @apply nomx-4 noflex nojustify-center noalign-middle noflex-col now-11/12 sm:now-9/12 md:now-6/12 lg:now-4/12  noshadow-lg norounded-xl nop-10;
   }
 
   .button-wrapper {
@@ -46,12 +47,13 @@
   flex-basis: 50%;
 }
 
-.container-wrapper {
-  width: 100%;
+.container-wrapper_homepage {
   max-width: 500px;
-  /* margin: auto; */
-  /* margin-inline: 20px; */
-  /* min-height: 50vh; */
+}
+
+.container-wrapper {
+  max-width: 500px;
+  /* min-height: 60vh; */
 }
 
 .link-underline-animation {

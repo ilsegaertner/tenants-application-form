@@ -76,7 +76,7 @@ const RegistrationForm: React.FC = () => {
         <ProgressIndicator progress={getProgressValue()} />{" "}
       </div>
 
-      <div className="outer-wrapper">
+      <div className="outer-wrapper ">
         <h1 className="link-underline-animation notext-white nopx-0.5">
           <Link to="/">Buena</Link>
         </h1>
