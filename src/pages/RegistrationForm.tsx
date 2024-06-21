@@ -1,11 +1,13 @@
 import React from "react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import "../../src/App.css";
 import Step1 from "../components/Step1";
 import Step2 from "../components/Step2";
 import Step3 from "../components/Step3";
 import LastStep from "../components/LastStep";
 import ProgressIndicator from "../components/ProgressIndicator";
+import { AnimatePresence, motion } from "framer-motion";
 
 const RegistrationForm: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -23,7 +25,7 @@ const RegistrationForm: React.FC = () => {
 
   const getProgressValue = () => {
     return (step / totalSteps) * 100;
-  }
+  };
 
   const renderStep = () => {
     switch (step) {
@@ -68,13 +70,34 @@ const RegistrationForm: React.FC = () => {
 
   return (
     <>
-      <div className="container-wrapper noborder-2 nop-10">
-        <Link to="/" className="notext-xl hover:notext-blue-800 nopb-10">
-          Buena
-        </Link>
-        <ProgressIndicator progress={getProgressValue()}/>
-        {renderStep()}
+      {/* <div className="container-wrapper"> */}
+      <div className="nosticky notop-0">
+        {" "}
+        <ProgressIndicator progress={getProgressValue()} />{" "}
       </div>
+
+      <div className="outer-wrapper">
+        <AnimatePresence mode="wait">
+          <motion.div
+            className="container-wrapper"
+            key={step}
+            initial={{ opacity: 0, x: 100 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: -100 }}
+            transition={{ duration: 0.003 }}
+          >
+            <div className="noflex noflex-col sm:noflex-row nogap-10 nojustify-between">
+              <div className="flex-dark norounded-sm">
+                <h1 className="link-underline-animation notext-white ">
+                  <Link to="/">Buena</Link>
+                </h1>
+              </div>
+              {renderStep()}
+            </div>
+          </motion.div>
+        </AnimatePresence>
+      </div>
+      {/* </div> */}
     </>
   );
 };
