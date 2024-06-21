@@ -26,26 +26,28 @@ const ModalComponent: React.FC<ModalComponentProps> = ({
   return (
     <AlertDialog open={showModal} onOpenChange={onCancel}>
       <motion.div
-        className="fixed inset-0 z-50 flex items-center justify-center bg-gray-800 bg-opacity-50"
+        className="nomx-4"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
       >
         <AlertDialogContent>
           <motion.div
-            className="bg-white p-6 rounded shadow-lg"
+            className="bg-white p-6 rounded shadow-lg nomx-5"
             initial={{ scale: 0.8 }}
             animate={{ scale: 1 }}
             exit={{ scale: 0.8 }}
           >
             <AlertDialogHeader>
-              <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
+              <AlertDialogTitle className="nomb-8">
+                Are you absolutely sure?
+              </AlertDialogTitle>
               <AlertDialogDescription>
                 Are you sure you want to submit the form? This action cannot be
                 undone.
               </AlertDialogDescription>
             </AlertDialogHeader>
-            <AlertDialogFooter>
+            <AlertDialogFooter className="nomt-12">
               <AlertDialogCancel asChild>
                 <Button variant="secondary" onClick={onCancel}>
                   Cancel

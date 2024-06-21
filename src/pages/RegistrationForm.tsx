@@ -71,7 +71,7 @@ const RegistrationForm: React.FC = () => {
   return (
     <>
       {/* <div className="container-wrapper"> */}
-      <div className="nosticky notop-0">
+      <div className="nosticky notop-0 no-mx-4">
         {" "}
         <ProgressIndicator progress={getProgressValue()} />{" "}
       </div>
@@ -85,10 +85,11 @@ const RegistrationForm: React.FC = () => {
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: -100 }}
             transition={{ duration: 0.003 }}
+            layout
           >
             <div className="noflex noflex-col sm:noflex-row nogap-10 nojustify-between">
               <div className="flex-dark norounded-sm">
-                <h1 className="link-underline-animation notext-white ">
+                <h1 className="link-underline-animation notext-white nopx-0.5">
                   <Link to="/">Buena</Link>
                 </h1>
               </div>

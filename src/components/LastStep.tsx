@@ -28,7 +28,11 @@ const LastStep: React.FC<LastStepProps> = ({ previousStep, formData }) => {
 
   const handleConfirm = () => {
     setShowModal(false);
-    toast("Form data is submitted successfully.");
+
+    toast(
+      "We hope you have fun using our platform. If you ever need support, please feel free to email us at support@buena.com."
+    );
+    toast("Thank You! Your data was submitted successfully.");
 
     setTimeout(() => {
       navigate("/");

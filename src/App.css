@@ -8,7 +8,7 @@
   }
 
   .container-wrapper {
-    @apply noflex nojustify-center noalign-middle noflex-col now-11/12 sm:now-9/12 md:now-6/12 lg:now-4/12 nom-auto noshadow-lg norounded-sm nop-10;
+    @apply nomx-4 noflex nojustify-center noalign-middle noflex-col now-11/12 sm:now-9/12 md:now-6/12 lg:now-4/12 nom-auto noshadow-lg norounded-sm nop-10;
   }
 
   .button-wrapper {
@@ -38,12 +38,25 @@
 
 .flex-dark {
   background-color: #09090b;
+  flex-basis: 5%;
+}
+
+.form-outer {
+  flex-basis: 50%;
+}
+
+.container-wrapper {
+  width: 100%;
+  max-width: 500px;
+  /* margin: auto; */
+  /* margin-inline: 20px; */
+  /* min-height: 50vh; */
 }
 
 .link-underline-animation {
   display: inline-block;
   position: relative;
-  color: #9b9bbf;
+  color: #9a9abc;
 }
 
 .link-underline-animation:hover {
