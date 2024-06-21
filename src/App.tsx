@@ -10,7 +10,7 @@ import { Toaster } from "./components/ui/sonner";
 function App() {
   return (
     <BrowserRouter>
-      <div className="App container-wrapper bg-red-500">
+      <div className="App">
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/register" element={<RegistrationForm />} />
