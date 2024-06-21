@@ -16,7 +16,7 @@ COPY . .
 # Build the application
 RUN npm run build
 
-# Install a lightweight web server
+# Install a lightweight web server globally
 RUN npm install -g serve
 
 # Set the command to run the web server on port 80
