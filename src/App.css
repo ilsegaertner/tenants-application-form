@@ -38,6 +38,7 @@
 
 .flex-dark {
   background-color: #09090b;
+  /* background: linear-gradient(to bottom, #09090b, rgb(181, 181, 181)); */
   flex-basis: 5%;
 }
 

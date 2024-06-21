@@ -77,6 +77,9 @@ const RegistrationForm: React.FC = () => {
       </div>
 
       <div className="outer-wrapper">
+        <h1 className="link-underline-animation notext-white nopx-0.5">
+          <Link to="/">Buena</Link>
+        </h1>
         <AnimatePresence mode="wait">
           <motion.div
             className="container-wrapper"
@@ -88,11 +91,7 @@ const RegistrationForm: React.FC = () => {
             layout
           >
             <div className="noflex noflex-col sm:noflex-row nogap-10 nojustify-between">
-              <div className="flex-dark norounded-sm">
-                <h1 className="link-underline-animation notext-white nopx-0.5">
-                  <Link to="/">Buena</Link>
-                </h1>
-              </div>
+              <div className="flex-dark norounded-sm"></div>
               {renderStep()}
             </div>
           </motion.div>
