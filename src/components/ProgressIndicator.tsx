@@ -8,15 +8,14 @@ interface ProgressIndicatorProp {
 
 const ProgressIndicator: React.FC<ProgressIndicatorProp> = ({ progress }) => {
   return (
-    <div className="w-[60%] h-2 bg-gray-200 rounded">
+    <div className="w-[60%] h-4 bg-gray-200 rounded relative overflow-hidden">
       <motion.div
-        className="h-2 bg-blue-600 rounded"
+        className="h-full bg-blue-900 absolute top-0 left-0"
         initial={{ width: 0 }}
         animate={{ width: `${progress}%` }}
-        transition={{ duration: 0.5 }}
-      >
-        <Progress value={progress} />
-      </motion.div>
+        transition={{ duration: 0.003 }}
+      />
+      <Progress value={progress} className="opacity-0" />
     </div>
   );
 };
