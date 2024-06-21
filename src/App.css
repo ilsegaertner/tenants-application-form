@@ -24,7 +24,7 @@
   }
 
   .form-summary {
-    @apply noflex nojustify-between;
+    @apply noflex nojustify-between nogap-5;
   }
 
   .span-text {
