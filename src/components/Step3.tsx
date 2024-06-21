@@ -113,10 +113,10 @@ const Step3: React.FC<Step3Props> = ({
           <div className="button-wrapper">
             <Button type="button" onClick={previousStep} variant="secondary">
               {" "}
-              back{" "}
+              Back{" "}
             </Button>
             <Button type="submit" className="button-filled">
-              next
+              Next
             </Button>
           </div>
         </form>
