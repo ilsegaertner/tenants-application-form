@@ -17,7 +17,7 @@ const HomePage = () => {
             transition={{ duration: 0.003 }}
           >
             <div className="noflex noflex-col sm:noflex-row nogap-10 nojustify-between noitems-center">
-              <svg
+              {/* <svg
                 width="15"
                 height="15"
                 viewBox="0 0 15 15"
@@ -30,7 +30,7 @@ const HomePage = () => {
                   fill-rule="evenodd"
                   clip-rule="evenodd"
                 ></path>
-              </svg>{" "}
+              </svg>{" "} */}
               <h1 className="link-underline-animation buena"> Buena</h1>
               <div className="">
                 <h2 className=" notext-white">
