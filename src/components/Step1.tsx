@@ -53,43 +53,47 @@ const Step1: React.FC<Step1Props> = ({ nextStep, formData, setFormData }) => {
     <>
       <Form {...useForm()}>
         <form className="form-outer" onSubmit={handleSubmit(onSubmit)}>
-          <FormField
-            control={control}
-            name="fullName"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Full Name</FormLabel>
-                <FormControl>
-                  <Input placeholder="Full Name" {...field} />
-                </FormControl>
-                {errors.fullName && (
-                  <FormMessage>{errors.fullName.message}</FormMessage>
-                )}
-                <FormDescription>
+          <div className="">
+            <FormField
+              control={control}
+              name="fullName"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Full Name</FormLabel>
+                  <FormControl>
+                    <Input placeholder="Full Name" {...field} />
+                  </FormControl>
+                  {errors.fullName && (
+                    <FormMessage>{errors.fullName.message}</FormMessage>
+                  )}
+                  {/* <FormDescription>
                   This is your public display name.
-                </FormDescription>
-              </FormItem>
-            )}
-          />
-
-          <FormField
-            control={control}
-            name="email"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Email</FormLabel>
-                <FormControl>
-                  <Input placeholder="Your Email" {...field} />
-                </FormControl>
-                {errors.email && (
-                  <FormMessage> {errors.email.message}</FormMessage>
-                )}
-                <FormDescription>Enter your email address.</FormDescription>
-              </FormItem>
-            )}
-          />
-
-          <Button type="submit">Next</Button>
+                </FormDescription> */}
+                </FormItem>
+              )}
+            />
+          </div>
+          <div className="nopt-6">
+            <FormField
+              control={control}
+              name="email"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Email</FormLabel>
+                  <FormControl>
+                    <Input placeholder="Your Email" {...field} />
+                  </FormControl>
+                  {errors.email && (
+                    <FormMessage> {errors.email.message}</FormMessage>
+                  )}
+                  <FormDescription>Enter your email address.</FormDescription>
+                </FormItem>
+              )}
+            />
+          </div>
+          <div className="button-wrapper">
+            <Button type="submit">Next</Button>
+          </div>
         </form>
       </Form>
     </>

@@ -2,7 +2,60 @@
 @tailwind components;
 @tailwind utilities;
 
-/* .container-wrapper {
-  max-width: 50%;
-  margin: 0 auto;
-} */
+@layer components {
+  .outer-wrapper {
+    @apply noflex nojustify-center noitems-center noh-screen;
+  }
+
+  .container-wrapper {
+    @apply noflex nojustify-center noalign-middle noflex-col now-11/12 sm:now-9/12 md:now-6/12 lg:now-4/12 nom-auto noshadow-lg norounded-sm nop-10;
+  }
+
+  .button-wrapper {
+    @apply noflex nogap-5 nopt-9;
+  }
+
+  .radio-label {
+    @apply nopx-2;
+  }
+
+  .buena {
+    @apply nofont-semibold;
+  }
+
+  header {
+    @apply noblock  notracking-tight nosticky notop-1 nomb-10;
+  }
+}
+
+.flex-dark {
+  background-color: #09090b;
+}
+
+.link-underline-animation {
+  display: inline-block;
+  position: relative;
+  color: #9b9bbf;
+}
+
+.link-underline-animation:hover {
+  cursor: pointer;
+}
+
+.link-underline-animation::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  transform: scaleX(0);
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: #9a9abc;
+  transform-origin: bottom right;
+  transition: transform 0.4s cubic-bezier(0.86, 0, 0.07, 1);
+}
+
+.link-underline-animation:hover::after {
+  transform: scaleX(1);
+  transform-origin: bottom left;
+}
