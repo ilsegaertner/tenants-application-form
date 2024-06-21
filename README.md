@@ -1,46 +1,41 @@
-# Getting Started with Create React App
+# Tenants Application Form
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project is a multi-step application form for tenants to register with a company and start booking apartments. It includes fields for full name, email, phone number, and salary indication. The form also includes a progress indicator and a summary of all the data entered during the flow, displayed on the last page.
 
-## Available Scripts
+## Features
 
-In the project directory, you can run:
+- Multi-step form with progress indicator
+- Form validation using zod and react-hook-form
+- Modal confirmation before submission
+- Toast notifications using sonner
+- Styled using Tailwind CSS and shadcn/ui
 
-### `npm start`
+## View the Application
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+You can view the application live at:
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Run Locally with Docker
 
-### `npm test`
+If you prefer to run the application locally, follow these steps:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Install Docker
 
-### `npm run build`
+Download and install Docker from [https://www.docker.com/products/docker-desktop](https://www.docker.com/products/docker-desktop).
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Build the Docker Image
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Open a terminal, navigate to the project directory, and run:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+docker build -t tenants-application-form
 
-### `npm run eject`
+### Run the Docker Container
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+Run the following command to start the application:
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+docker run -p 3000:80 tenants-application-form
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+### Open in Browser
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+Open your web browser and go to http://localhost:3000 to view the application.
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+Feel free to customize the content and the URL as per your needs.
