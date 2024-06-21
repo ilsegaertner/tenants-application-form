@@ -72,23 +72,33 @@ const Step3: React.FC<Step3Props> = ({
                   >
                     <div className="flex items-center space-x-2">
                       <RadioGroupItem value="0-1000" id="salary1" />
-                      <Label htmlFor="salary1">0-1000</Label>
+                      <Label htmlFor="salary1" className="radio-label">
+                        0-1000
+                      </Label>
                     </div>
                     <div className="flex items-center space-x-2">
                       <RadioGroupItem value="1000-2000" id="salary2" />
-                      <Label htmlFor="salary2">1000-2000</Label>
+                      <Label htmlFor="salary2" className="radio-label">
+                        1000-2000
+                      </Label>
                     </div>
                     <div className="flex items-center space-x-2">
                       <RadioGroupItem value="2000-3000" id="salary3" />
-                      <Label htmlFor="salary3">2000-3000</Label>
+                      <Label htmlFor="salary3" className="radio-label">
+                        2000-3000
+                      </Label>
                     </div>
                     <div className="flex items-center space-x-2">
                       <RadioGroupItem value="3000-4000" id="salary4" />
-                      <Label htmlFor="salary4">3000-4000</Label>
+                      <Label htmlFor="salary4" className="radio-label">
+                        3000-4000
+                      </Label>
                     </div>
                     <div className="flex items-center space-x-2">
                       <RadioGroupItem value=">4000" id="salary5" />
-                      <Label htmlFor="salary5">Mehr als 4000</Label>
+                      <Label htmlFor="salary5" className="radio-label">
+                        Mehr als 4000
+                      </Label>
                     </div>
                   </RadioGroup>
                 </FormControl>
@@ -101,7 +111,7 @@ const Step3: React.FC<Step3Props> = ({
           />
 
           <div className="button-wrapper">
-            <Button type="button" onClick={previousStep} variant="outline">
+            <Button type="button" onClick={previousStep} variant="secondary">
               {" "}
               back{" "}
             </Button>
