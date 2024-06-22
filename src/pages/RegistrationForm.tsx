@@ -27,43 +27,96 @@ const RegistrationForm: React.FC = () => {
     return (step / totalSteps) * 100;
   };
 
+  const stepVariants = {
+    initial: { opacity: 0, x: 100 },
+    animate: { opacity: 1, x: 0 },
+    exit: { opacity: 0, x: -100 },
+  };
+
   const renderStep = () => {
     switch (step) {
       case 1:
         return (
-          <Step1
-            formData={formData}
-            setFormData={setFormData}
-            nextStep={nextStep}
-          />
+          <motion.div
+            key="step1"
+            initial="initial"
+            animate="animate"
+            exit="exit"
+            variants={stepVariants}
+            transition={{ duration: 0.05 }}
+          >
+            <Step1
+              formData={formData}
+              setFormData={setFormData}
+              nextStep={nextStep}
+            />
+          </motion.div>
         );
       case 2:
         return (
-          <Step2
-            formData={formData}
-            setFormData={setFormData}
-            previousStep={prevStep}
-            nextStep={nextStep}
-          />
+          <motion.div
+            key="step2"
+            initial="initial"
+            animate="animate"
+            exit="exit"
+            variants={stepVariants}
+            transition={{ duration: 0.05 }}
+          >
+            <Step2
+              formData={formData}
+              setFormData={setFormData}
+              previousStep={prevStep}
+              nextStep={nextStep}
+            />
+          </motion.div>
         );
       case 3:
         return (
-          <Step3
-            formData={formData}
-            setFormData={setFormData}
-            previousStep={prevStep}
-            nextStep={nextStep}
-          />
+          <motion.div
+            key="step3"
+            initial="initial"
+            animate="animate"
+            exit="exit"
+            variants={stepVariants}
+            transition={{ duration: 0.05 }}
+          >
+            <Step3
+              formData={formData}
+              setFormData={setFormData}
+              previousStep={prevStep}
+              nextStep={nextStep}
+            />
+          </motion.div>
         );
       case 4:
-        return <LastStep formData={formData} previousStep={prevStep} />;
+        return (
+          <motion.div
+            key="lastStep"
+            initial="initial"
+            animate="animate"
+            exit="exit"
+            variants={stepVariants}
+            transition={{ duration: 0.05 }}
+          >
+            <LastStep formData={formData} previousStep={prevStep} />
+          </motion.div>
+        );
       default:
         return (
-          <Step1
-            formData={formData}
-            nextStep={nextStep}
-            setFormData={setFormData}
-          />
+          <motion.div
+            key="step1"
+            initial="initial"
+            animate="animate"
+            exit="exit"
+            variants={stepVariants}
+            transition={{ duration: 0.05 }}
+          >
+            <Step1
+              formData={formData}
+              nextStep={nextStep}
+              setFormData={setFormData}
+            />
+          </motion.div>
         );
     }
   };
