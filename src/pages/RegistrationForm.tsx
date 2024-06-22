@@ -77,19 +77,21 @@ const RegistrationForm: React.FC = () => {
       </div>
 
       <div className="outer-wrapper ">
-        <svg
-          width="15"
-          height="15"
-          viewBox="0 0 15 15"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path d="M9 4L9 11L4.5 7.5L9 4Z" fill="#9a9abc"></path>
-        </svg>
-        <h1 className="link-underline-animation notext-white nopx-0.5">
-          {" "}
-          <Link to="/">Go to Buena</Link>
-        </h1>
+        <div className="noflex noitems-center">
+          <svg
+            width="15"
+            height="15"
+            viewBox="0 0 15 15"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path d="M9 4L9 11L4.5 7.5L9 4Z" fill="#9a9abc"></path>
+          </svg>
+          <h1 className="link-underline-animation notext-white nopx-0.5">
+            {" "}
+            <Link to="/">Go to Buena</Link>
+          </h1>
+        </div>
         <AnimatePresence mode="wait">
           <motion.div
             className="container-wrapper"
